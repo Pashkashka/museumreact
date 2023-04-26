@@ -2,10 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\public\\img",
-    "\\public\\img\\pizza",
-    "\\src"
+    "\\src",
+    "\\src\\components"
   ],
-  "SelectedNode": "\\public\\img",
+  "SelectedNode": "\\src\\components\\Autorization.js",
   "PreviewInSolutionExplorer": false
 }
