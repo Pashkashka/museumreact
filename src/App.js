@@ -6,38 +6,43 @@ import User from './components/User';
 import Favorites from './components/Favorites';
 import Autorization from './components/Autorization';
 
-const arrPizza = [
-    { title: 'Pizza "Margorita"', price: '20$', imageUrl: '/img/pizza/p1.jpg' },
-    { title: 'Pizza "Pepperoni"', price: '25$', imageUrl: '/img/pizza/p2.jpg' },
-    { title: 'Pizza "Ham with mushrooms"', price: '25$', imageUrl: '/img/pizza/p3.jpg' },
-    { title: 'Pizza "Roman"', price: '30$', imageUrl: '/img/pizza/p4.jpg' },
 
-];
-const arrSushi = [
-    { title: 'Roll "Philadelphia"', price: '40$', imageUrl: '/img/sushi/s1.jpg' },
-    { title: 'Roll "California"', price: '40$', imageUrl: '/img/sushi/s2.jpg' },
-    { title: 'Roll "Philadelphia with eel"', price: '45$', imageUrl: '/img/sushi/s4.jpg' },
-    { title: 'Roll "Baked Roll"', price: '30$', imageUrl: '/img/sushi/s3.jpg' },
 
-];
 
 
 
 function App() {
+    const [items, setItems] = React.useState([]);
+    React.useEffect(() => {
+        fetch('https://644b992817e2663b9df340a0.mockapi.io/Items').then((res) => {
+            return res.json();
+        }).then((json) => {
+            setItems(json);
+        });
+    }, []);
+
+    const [cartItems, setCartItems] = React.useState([]);
+    const [favoriteItems, setFavoriteItems] = React.useState([]);
+
     const [cartOpened, setCartOpened] = React.useState(false);
     const [favoriteOpened, setFavoriteOpened] = React.useState(false);
     const [userOpened, setUserOpened] = React.useState(false);
-
+    const onAddToCart = (obj) => {
+        setCartItems(prev=>[...prev, obj]);
+    }
+    const onAddToFavorite = (obj) => {
+        setFavoriteItems(prev => [...prev, obj]);
+    }
     return (
-
+ 
         <div className="wrapper">
 
 
             <Autorization />
-            {cartOpened ? <Drawer onCloseCart={() => setCartOpened(false)} /> : null}
+            {cartOpened ? <Drawer items={ cartItems} onCloseCart={() => setCartOpened(false)} /> : null}
             {userOpened ? <User onCloseUser={() => setUserOpened(false)} /> : null}
 
-            {favoriteOpened ? <  Favorites onCloseFavorite={() => setFavoriteOpened(false)} /> : null}
+            {favoriteOpened ? <  Favorites items={favoriteItems } onCloseFavorite={() => setFavoriteOpened(false)} /> : null}
 
             <Header
                 onClickCart={() => setCartOpened(true)}
@@ -54,12 +59,12 @@ function App() {
                 <div className="Pizza">
 
                     {
-                        arrPizza.map((obj) => (<Card
-                            title={obj.title}
-                            price={obj.price}
-                            imageUrl={obj.imageUrl}
-                            onClickPlus={() => console.log(obj)}
-                            onClickFavorite={() => console.log(obj)}
+                        items.map((item) => (<Card
+                            title={item.title}
+                            price={item.price}
+                            imageUrl={item.imageUrl}
+                            onPlus={(obj) => onAddToCart(obj)}
+                            onFavorite={(obj) => onAddToFavorite(obj)}
                         />))
                     }
 
@@ -69,27 +74,7 @@ function App() {
             </div >
 
 
-            <div className="content">
-                <h1>Sushi </h1>
-                <div className="Sushi">
-
-                    {
-                        arrSushi.map((obj) => (<Card
-                            title={obj.title}
-                            price={obj.price}
-                            imageUrl={obj.imageUrl}
-                            onClickPlus={() => console.log(obj)}
-                            onClickFavorite={() => console.log(obj)}
-                        />))
-                    }
-
-
-
-
-
-                </div>
-
-            </div >
+           
 
 
         </div>

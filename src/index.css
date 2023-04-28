@@ -84,7 +84,10 @@ b{
     font-size: 13px;
 }
 }
-
+.Pizza {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 
 
@@ -111,8 +114,12 @@ b{
     height: 32px;
     width: 32px;
     cursor: pointer;
-    box-shadow: -10px 4px 24px rgba(0,0,0,0.01);
+    box-shadow: -10px 4px 24px rgba(0,0,0,0.1);
 }
+    .button:active {
+        background-color: #cccccc;
+        box-shadow: none;
+    }
 
 
 
@@ -125,7 +132,10 @@ b{
     width: 32px;
     cursor: pointer;
 }
-
+.buttonCart:active {
+    background-color: #cccccc;
+    box-shadow: none;
+}
 
 
 .buttonUser {
@@ -136,6 +146,10 @@ b{
     height: 32px;
     width: 32px;
     cursor: pointer;
+}
+.buttonUser:active {
+    background-color: #cccccc;
+    box-shadow: none;
 }
 
 
@@ -148,12 +162,14 @@ b{
     width: 32px;
     cursor: pointer;
 }
-
-
-
-.Pizza {
-    display: flex;
+.buttonFavorites:active {
+    background-color: #cccccc;
+    box-shadow: none;
 }
+
+
+
+
 .Sushi {
     display: flex;
 }
