@@ -6,7 +6,12 @@ import User from './components/User';
 import Favorites from './components/Favorites';
 import Autorization from './components/Autorization';
 import axios from 'axios';
-
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Museums from './Museums';
+import Exhibitions from './Exhibitions';
 
 
 
@@ -16,7 +21,7 @@ import axios from 'axios';
 function App() {
 
     const onAddToCart = (obj) => {
-         axios.post('https://644b992817e2663b9df340a0.mockapi.io/cart', obj);
+       //  axios.post('https://644b992817e2663b9df340a0.mockapi.io/cart', obj);
         setCartItems((prev) => [...prev, obj]);
     };
     const onAddToFavorite = (obj) => {
@@ -30,9 +35,9 @@ function App() {
         axios.get('https://644b992817e2663b9df340a0.mockapi.io/Items').then((res) => {
             setItems(res.data);
         });
-        axios.get('https://644b992817e2663b9df340a0.mockapi.io/cart').then((res) => {
+      /*  axios.get('https://644b992817e2663b9df340a0.mockapi.io/cart').then((res) => {
              setCartItems(res.data);
-         });
+         });*/
     }, []);
 
     const [cartItems, setCartItems] = React.useState([]);
@@ -65,100 +70,66 @@ function App() {
         setSearchValue(event.target.value);
     };
    
-
-   
+  
+ 
   
     return (
-
+        <Router>
+            
         <div className="wrapper">
 
 
             <Autorization />
-           
+            
             {cartOpened ? <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveCartItem} /> : null}
             {userOpened ? <User onCloseUser={() => setUserOpened(false)} /> : null}
 
             {favoriteOpened ? <  Favorites items={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)} onRemove={onRemoveFavoriteItem} /> : null}
-
+           
             <Header
                 onClickCart={() => setCartOpened(true)}
                 onClickFavorite={() => setFavoriteOpened(true)}
                 onClickUser={() => setUserOpened(true)} />
 
-            
-            <div className="content">
 
-
-                <div className="search-blok">
-                    <img width={15} height={15} src="img/search.png" alt="Search" />
-                    <input onChange={onChangeSearchInput} value={searchValue} placeholder="Search..." />
-                </div>
-                <h1>{searchValue ? 'Search by request:   ' : 'Exhibitions'} </h1>
-
-                <div className="Pizza">
-
-                    {
-                        items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (<Card
-                            key={item.title}
-                            title={item.title}
-                            price={item.price}
-                            imageUrl={item.imageUrl}
-                            onPlus={(obj) => onAddToCart(obj)}
-                            onFavorite={(obj) => onAddToFavorite(obj)}
-                        />))
-                    }
-
-
-                </div>
-
-            </div >
-         
+         <Routes>
+                <Route path="/exhibitions" element={
+                    <Exhibitions
+                        onChangeSearchInput={onChangeSearchInput}
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue}
+                        items={items}
+                        onAddToCart={onAddToCart}
+                        onAddToFavorite={onAddToFavorite}
+                    />}>
+            </Route>
+                <Route path="/" element={
+                    <Museums
+                        museums={museums}
+                        onChangeSearchInput={onChangeSearchInput}
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue} />}>
+                </Route>
+            </Routes>
                
            
            
 
 
-
-            {/*  <div className="content">
-
-
-                <div className="search-blok">
-                    <img width={15} height={15} src="img/search.png" alt="Search" />
-                    <input onChange={onChangeSearchInput} value={searchValue} placeholder="Search..." />
-                </div>
-                <h1>{searchValue ? 'Search by request:   ' : 'Museums'} </h1>
-
-                <div className="Pizza">
-
-                    {
-                        items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
-                           
-                                <div className="card"  >
-
-                                    <img width={200} height={200} src={item.imageUrl} alt="Museum" />
-
-                                    <h5>{item.title} </h5>
-                                    <div className="cardButt"></div>
-                                    <div className="Price"></div>
-                                </div>
-                           
-
-                        )
-                        )
-                    }
-
-
-                </div>
-
-            </div > */}
+            
 
 
 
 
 
-        </div>
+            </div>
+        </Router>
+          
     );
 }
+
+
+
 
 
    

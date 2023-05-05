@@ -3,9 +3,10 @@
     "",
     "\\public",
     "\\public\\img",
+    "\\public\\img\\museums",
     "\\src",
     "\\src\\components"
   ],
-  "SelectedNode": "\\src\\components\\Favorites.js",
+  "SelectedNode": "\\public\\img\\logo.png",
   "PreviewInSolutionExplorer": false
 }
