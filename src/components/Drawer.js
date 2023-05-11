@@ -17,7 +17,7 @@ function Drawer({ onCloseCart,onRemove, items = [] }) {
                             <p>{obj.title} </p>
                             <b>{obj.price}</b>
                         </div>
-                            <button className="removeButton" onClick={()=> onRemove(obj.id) }>
+                            <button className="removeButton" onClick={()=> onRemove(obj.title) }>
                             <img width={21} height={21} src="/img/remove.png" alt="Remove" />
                         </button>
                     </div>))}

@@ -3,7 +3,9 @@ import Card from './components/Card';
 function Exhibitions({
     items,
     onAddToCart,
-    onAddToFavorite })
+    onAddToFavorite,
+    museum
+})
 {
     return (<div className="content">
 
@@ -18,7 +20,7 @@ function Exhibitions({
 
                     <Card
 
-                        key={item.title}
+                        key={item.id}
                         title={item.title}
                         price={item.Price}
                         imageUrl={item.imageUrl}

@@ -42,10 +42,11 @@ function App() {
 
     const [cartItems, setCartItems] = React.useState([]);
     const [favoriteItems, setFavoriteItems] = React.useState([]);
+    
    
-    const onRemoveCartItem = (id) => {
+    const onRemoveCartItem = (title) => {
         /* axios.delete('https://644b992817e2663b9df340a0.mockapi.io/cart/${id}' );*/
-        setCartItems((prev) => prev.filter((item) => item.id !== id));
+        setCartItems((prev) => prev.filter((item) => item.title !== title));
     };
     const onRemoveFavoriteItem = (title) => {
         //axios.delete('https://644b992817e2663b9df340a0.mockapi.io/cart/${id}');
@@ -63,7 +64,12 @@ function App() {
         });
         
     }, []);
-
+    const [selectedMuseum, setSelectedMuseum] = React.useState(null);
+    const handleMuseumClick = (museum) => {
+        setSelectedMuseum(museum);
+        setItems(items.filter(item => item.museumId === museum.id));
+    };
+    
 
     const [searchValue, setSearchValue] = React.useState('');
     const onChangeSearchInput = (event) => {
@@ -93,19 +99,22 @@ function App() {
 
 
          <Routes>
-                <Route path="/exhibitions" element={
-                    <Exhibitions
-                        onChangeSearchInput={onChangeSearchInput}
-                        searchValue={searchValue}
-                        setSearchValue={setSearchValue}
-                        items={items}
-                        onAddToCart={onAddToCart}
-                        onAddToFavorite={onAddToFavorite}
-                    />}>
-            </Route>
+                    <Route path="/exhibitions" element=
+                        
+                        {selectedMuseum && <Exhibitions
+                            onChangeSearchInput={onChangeSearchInput}
+                            searchValue={searchValue}
+                            setSearchValue={setSearchValue}
+                            items={items}
+                            onAddToCart={onAddToCart}
+                            onAddToFavorite={onAddToFavorite}
+                            museum={selectedMuseum}
+                            />}> </Route>
+                        
                 <Route path="/" element={
                     <Museums
-                        museums={museums}
+                            museums={museums}
+                            onMuseumClick={handleMuseumClick}
                         onChangeSearchInput={onChangeSearchInput}
                         searchValue={searchValue}
                         setSearchValue={setSearchValue} />}>

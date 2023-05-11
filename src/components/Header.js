@@ -5,10 +5,10 @@ function Header(props) {
     return (<header>
         
         <div className="headerLeft">
-                <Link to="/">
+                <a href="/">
             
                 <img width={40} height={40} src="/img/logo1.png " alt="logoType" />
-           </Link>
+           </a>
            
             <div className="headerInfo">
                 <h3>Afisha</h3>
