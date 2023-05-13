@@ -5,12 +5,11 @@ function Exhibitions({
     onAddToCart,
     onAddToFavorite,
     museum
-})
-{
+}) {
     return (<div className="content">
 
 
-        
+
         <h1>Exhibitions </h1>
 
         <div className="Pizza">

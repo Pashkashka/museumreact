@@ -1,8 +1,6 @@
-
-
-function Favorites({ onCloseFavorite,onRemove, items = [] }) {
+function Favorites({ onCloseFavorite, onRemove, items = [] }) {
     return (
-        <div  className="overlay">
+        <div className="overlay">
             <div className="drawer">
                 <button className="removeButton" onClick={onCloseFavorite} >
                     <img width={21} height={21} src="/img/remove.png" alt="Remove" />
@@ -26,7 +24,7 @@ function Favorites({ onCloseFavorite,onRemove, items = [] }) {
 
                 </div>
 
-                
+
 
             </div>
         </div>);

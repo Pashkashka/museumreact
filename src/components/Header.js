@@ -13,7 +13,7 @@ function Header(props) {
             <div className="headerInfo">
                 <h3>Afisha</h3>
                 <p >
-                    Moscow and St.Petersburg Museums
+                    Moscow Museums
                 </p>
             </div>
             </div>
