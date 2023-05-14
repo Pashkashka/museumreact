@@ -7,10 +7,17 @@ function Exhibitions({
     museum
 }) {
     return (<div className="content">
+        <h1>{museum.title}</h1>
+        <h3>Metro:{museum.metro}</h3>
+        <div className="Map">
+            <iframe src={museum.map }
+                style={{ width: '600px', height: '300px', border: '0' }}
+                title="gg"
+            ></iframe>
+        </div>
 
 
-
-        <h1>Exhibitions </h1>
+        <h3>Exhibitions of {museum.title} </h3>
 
         <div className="Pizza">
 
@@ -37,3 +44,5 @@ function Exhibitions({
     </div >);
 }
 export default Exhibitions;
+
+
