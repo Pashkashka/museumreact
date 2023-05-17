@@ -3,7 +3,7 @@ body {
     font-family: 'Inter',system-ui;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color:#afd10c;
+    background-color: #cccccc;
 }
 
 * {
@@ -57,6 +57,7 @@ h3, p {
 
 .card {
     background-color: #808080;
+  
     border: 1px solid #000000;
     padding: 30px;
     width: 220px;
@@ -88,6 +89,10 @@ b{
     display: flex;
     flex-wrap: wrap;
 }
+    .CardImg {
+
+        padding: 10px;
+    }
 
 
 
@@ -181,15 +186,24 @@ b{
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
+    float: right;
+    display:flex;
     input{
              border:0;
              padding: 10px;
              font-size:16px;
              width:100px;
+             float: right;
+            
          }
          
 }
 
+
+.search-blok img {
+    display: flex;
+    float: right;
+}
 
 
 .overlay {
@@ -401,7 +415,29 @@ b{
     text-decoration: none;
 }
 
-    
+.drawerFavorite {
+    position: absolute;
+    width: 700px;
+    height: 100%;
+    right: 0;
+    background: #ffffff;
+    box-shadow: -10px 4px 24px rgba(0,0,0,0.01);
+    padding: 30px;
+    overflow: auto;
+}
+
+    .drawerFavorite .items {
+        overflow: auto;
+        margin-bottom: 40px;
+    }
+
+    .drawerFavorite h2 {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        font-size: 24px;
+        margin-bottom: 30px;
+    } 
 
 
 

@@ -1,30 +1,32 @@
-import React from 'react'
-function Card({ onFavorite, onPlus, title, imageUrl, price }) {
+import React from 'react';
+
+
+function Card({id, onFavorite, onPlus, exhibitionName, exhibitionPrice, exhibitionImageURL, favorited=false }) {
 
 
     const [isAdded, setIsAdded] = React.useState(false);
     const onClickPlus = () => {
-        onPlus({ title, imageUrl, price });
+        onPlus({ id, exhibitionName, exhibitionImageURL, exhibitionPrice });
         setIsAdded(!isAdded);
 
     }
-    const [isFavorite, setIsFavorite] = React.useState(false);
+    const [isFavorite, setIsFavorite] = React.useState(favorited);
     const onClickFavorite = () => {
-        onFavorite({ title, imageUrl, price });
+        onFavorite({ id, exhibitionName, exhibitionImageURL, exhibitionPrice });
         setIsFavorite(!isFavorite);
     }
 
-
+    
     return (<div className="card">
-        <img width={200} height={200} src={imageUrl} alt="Pizza" />
+        <img className="CardImg" width={200} height={200} src={exhibitionImageURL} alt="Pizza" />
 
-        <h5>{title} </h5>
+        <h5>{exhibitionName} </h5>
         <div className="cardButt"></div>
         <div className="Price"></div>
         <div>
             <div>
                 <span>Price:</span>
-                <b>{price}</b>
+                <b>{exhibitionPrice}</b>
             </div>
 
             <button className="button" onClick={onClickPlus}>

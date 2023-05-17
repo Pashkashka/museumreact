@@ -1,24 +1,28 @@
-function Favorites({ onCloseFavorite, onRemove, items = [] }) {
+import Card from './Card';
+
+function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove, items = [] }) {
     return (
         <div className="overlay">
-            <div className="drawer">
+            <div className="drawerFavorite">
                 <button className="removeButton" onClick={onCloseFavorite} >
                     <img width={21} height={21} src="/img/remove.png" alt="Remove" />
                 </button>
                 <h2>Favorites</h2>
 
-                <div className="items">
-                    {items.map((obj) => (
-                        <div className="cartItem">
-                            <img width={120} height={100} src={obj.imageUrl} alt="Pizza" />
-                            <div>
-                                <p>{obj.title} </p>
-                                <b>{obj.price}</b>
-                            </div>
-                            <button className="removeButton" onClick={() => onRemove(obj.title)} >
-                                <img width={21} height={21} src="/img/remove.png" alt="Remove" />
-                            </button>
-                        </div>))}
+                <div className="Pizza">
+                    {items.map((item, index) => (
+                        <Card
+
+                            key={index}
+                            id={item.id }
+                            exhibitionName={item.exhibitionName}
+                            exhibitionPrice={item.exhibitionPrice}
+                            exhibitionImageURL={item.exhibitionImageURL}
+                            onPlus={(obj) => onAddToCart(obj)}
+                            onFavorite={(obj) => onAddToFavorite(obj)}
+                            favorited={true }
+
+                        />))}
 
 
 
