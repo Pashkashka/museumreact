@@ -1,4 +1,5 @@
 function User(props) {
+    console.log(props.user.name);
     return ( <div  className="overlay">
             <div className="User">
             <button className="removeButton" onClick={props.onCloseUser}>
@@ -11,13 +12,12 @@ function User(props) {
             <h2>User</h2>
             
                 <span>Name:</span>
-                <b>Pavel</b>
-                <span>Lastname:</span>
-                <b>Ovsyannikov</b>
+            <b>{props.user.name}</b>
+                
                 <span>Email:</span>
-                <b>pasha.ov2003@yandex.ru</b>
+            <b>{props.user.email}</b>
                 <span>Number:</span>
-                <b>89267338911</b>
+            <b>{props.user.phoneNum}</b>
                 
                
 

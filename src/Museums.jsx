@@ -22,7 +22,7 @@ function Museums({isLoading, museums, onChangeSearchInput, searchValue, setSearc
                             <div className="card" key={museum.id}
                                 onClick={() => onMuseumClick(museum)} >
                                 
-                                 <img width={200} height={200} src={museum.museumImageURL} alt="Museum" />
+                                 <img  width={200} height={200} className="CardImg" src={museum.museumImageURL} alt="Museum" />
 
                                 <h5>{museum.name} </h5>
                                 <div className="cardButt"></div>

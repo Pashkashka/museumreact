@@ -19,6 +19,9 @@ function Header(props) {
             </div>
            
         <ul className="headerRight">
+        <Link to="/login" className="Link">
+                <span>Autorisation</span>
+            </Link>
             <li >
                 <button className="buttonCart" onClick={props.onClickCart}>
                     <img width={23} height={23} src="/img/cart.png "  alt="Cart"/>

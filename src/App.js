@@ -12,6 +12,7 @@ import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Museums from './Museums';
 import Exhibitions from './Exhibitions';
+import Registration from './components/Registration';
 
 
 
@@ -83,6 +84,7 @@ function App() {
     const [favoriteOpened, setFavoriteOpened] = React.useState(false);
     const [userOpened, setUserOpened] = React.useState(false);
     const [museums, setMuseums] = React.useState([]);
+    const [user, setUser] = React.useState([]);
 
    
 
@@ -98,6 +100,10 @@ function App() {
                 axios.get('добавь ссылку').then((res) => {
                     setFavoriteItems(res.data);
                 });
+      /*  axios.get('').then((res) => {
+            setUser(res.data);
+        });*/
+
       
             
         
@@ -123,11 +129,10 @@ function App() {
 
             <div className="wrapper">
 
-
-                {/* <Autorization />*/}
+           
 
                 {cartOpened ? <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveCartItem} /> : null}
-                {userOpened ? <User onCloseUser={() => setUserOpened(false)} /> : null}
+                {userOpened ? <User user={user} onCloseUser={() => setUserOpened(false)} /> : null}
 
                 {favoriteOpened ? <  Favorites items={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)}  onAddToCart={onAddToCart} onAddToFavorite={onAddToFavorite }  /> : null}
 
@@ -159,6 +164,10 @@ function App() {
                             onChangeSearchInput={onChangeSearchInput}
                             searchValue={searchValue}
                             setSearchValue={setSearchValue} />}>
+                    </Route>
+                    <Route path="/login" element={<Autorization /> }> </Route>
+                    <Route path="/registration" element={< Registration /> }>
+                       
                     </Route>
 
                 </Routes>
