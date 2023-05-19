@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-function Card({id, onFavorite, onPlus, exhibitionName, exhibitionPrice, exhibitionImageURL, favorited=false }) {
+function Card({id, onFavorite, onPlus, exhibitionName, exhibitionPrice, exhibitionImageURL, favorited=false, added=false }) {
 
 
-    const [isAdded, setIsAdded] = React.useState(false);
+    const [isAdded, setIsAdded] = React.useState(added);
     const onClickPlus = () => {
         onPlus({ id, exhibitionName, exhibitionImageURL, exhibitionPrice });
         setIsAdded(!isAdded);
@@ -30,7 +30,7 @@ function Card({id, onFavorite, onPlus, exhibitionName, exhibitionPrice, exhibiti
             </div>
 
             <button className="button" onClick={onClickPlus}>
-                <img width={21} height={21} src="/img/add.png" alt="Add" />
+                <img width={21} height={21} src={isAdded ? '/img/added.png' : '/img/add.png'} alt="Add" />
             </button>
             <button className="button" onClick={onClickFavorite}>
                 <img width={21} height={21} src={isFavorite ? '/img/favorites.png' : '/img/unfavorites.png'} alt="Favorites" />

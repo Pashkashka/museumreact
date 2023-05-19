@@ -1,6 +1,6 @@
 import React from 'react';
-
-function Drawer({ onCloseCart, onRemove, items = [] }) {
+import CardItems from './CardItems';
+function Drawer({ onAddToCart, onCloseCart, onRemove, items = [] }) {
    
 
     return (
@@ -11,19 +11,19 @@ function Drawer({ onCloseCart, onRemove, items = [] }) {
                 </button>
                 <h2>Cart</h2>
 
-                <div className="items">
-                    {items.map((obj) => (
-                        <div key={obj.id} className="cartItem">
-                            <img width={120} height={100} src={obj.exhibitionImageURL} alt="Pizza" />
-                            <div>
-                                <p>{obj.exhibitionName}</p>
-                                <b>{obj.exhibitionPrice}Rub</b>
-                            </div>
-                            <button className="removeButton" onClick={() => onRemove(obj.id)}>
-                                <img width={21} height={21} src="/img/remove.png" alt="Remove" />
-                            </button>
-                        </div>
-                    ))}
+                <div className="Items">
+                    {items.map((item, index) => (
+                        <CardItems
+
+                            key={index}
+                            id={item.id}
+                            exhibitionName={item.exhibitionName}
+                            exhibitionPrice={item.exhibitionPrice}
+                            exhibitionImageURL={item.exhibitionImageURL}
+                            onPlus={(obj) => onAddToCart(obj)}
+                            added={true }
+
+                        />))}
                 </div>
 
                 <ul className="cartTotalBlok">

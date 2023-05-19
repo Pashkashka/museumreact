@@ -24,18 +24,34 @@ import Registration from './components/Registration';
 
 function App() {
 
-    const onAddToCart = (obj) => {
-        axios.post('Добавь ссылку', obj);    //Добавить ссылку на корзину
+    /*const onAddToCart = (obj) => {
+        axios.post('https://644b992817e2663b9df340a0.mockapi.io/Items', obj);    
         setCartItems((prev) => [...prev, obj]);
+    };*/
+    const onAddToCart = async (obj) => {
+        try {
+            if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+                axios.delete(`https://644b992817e2663b9df340a0.mockapi.io/Items/${obj.id}`);
+                setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+            }
+            else {
+                const { data } = await axios.post('https://644b992817e2663b9df340a0.mockapi.io/Items', obj);
+                setCartItems((prev) => [...prev, data]);
+            }
+
+        } catch (error) {
+            alert('Do not add to cart');
+
+        }
     };
     const onAddToFavorite = async (obj) => {
         try {
             if (favoriteItems.find((item) => Number(item.id) === Number(obj.id))) {
-                axios.delete(`Добавь ссылку/${obj.id}`);
+                axios.delete(`https://644b992817e2663b9df340a0.mockapi.io/Items/${obj.id}`);
                 setFavoriteItems((prev) => prev.filter((item) => Number(item.id )!== Number(obj.id)));
             }
             else {
-                const { data } = await axios.post('добавь ссылку', obj);
+                const { data } = await axios.post('https://644b992817e2663b9df340a0.mockapi.io/Items', obj);
                 setFavoriteItems((prev) => [...prev, data]);
             }
 
@@ -72,12 +88,12 @@ function App() {
     const [favoriteItems, setFavoriteItems] = React.useState([]);
 
 
-    const onRemoveCartItem = (id) => {
+   /* const onRemoveCartItem = (id) => {
        // console.log(id);
         axios.delete(`Вставь ссылку/${id}`);
 
         setCartItems((prev) => prev.filter((obj) => obj.id !== id));
-    };
+    };*/
    
 
     const [cartOpened, setCartOpened] = React.useState(false);
@@ -94,10 +110,10 @@ function App() {
             axios.get('https://644b992817e2663b9df340a0.mockapi.io/museums').then((res) => {
                 setMuseums(res.data);
             });
-                axios.get('Вствь ссылку').then((res) => {
+        axios.get('https://644b992817e2663b9df340a0.mockapi.io/Items').then((res) => {
                     setCartItems(res.data);
                 });
-                axios.get('добавь ссылку').then((res) => {
+        axios.get('https://644b992817e2663b9df340a0.mockapi.io/Items').then((res) => {
                     setFavoriteItems(res.data);
                 });
       /*  axios.get('').then((res) => {
@@ -131,10 +147,10 @@ function App() {
 
            
 
-                {cartOpened ? <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onRemove={onRemoveCartItem} /> : null}
+                {cartOpened ? <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onAddToCart={onAddToCart} /> : null}
                 {userOpened ? <User user={user} onCloseUser={() => setUserOpened(false)} /> : null}
 
-                {favoriteOpened ? <  Favorites items={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)}  onAddToCart={onAddToCart} onAddToFavorite={onAddToFavorite }  /> : null}
+                {favoriteOpened ? <  Favorites items={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)} onAddToCart={onAddToCart}  onAddToFavorite={onAddToFavorite }  /> : null}
 
                 <Header
                     onClickCart={() => setCartOpened(true)}
@@ -146,6 +162,7 @@ function App() {
                     <Route path="/exhibitions" element=
 
                         {selectedMuseum && <Exhibitions
+                        cartItems={cartItems }
                         favoriteItems={favoriteItems }
                             onChangeSearchInput={onChangeSearchInput}
                             searchValue={searchValue}

@@ -1,13 +1,35 @@
-function CardItems() {
+import React from 'react';
+
+
+function CardItems({ id,  onPlus, exhibitionName, exhibitionPrice, exhibitionImageURL, added = false }) {
+
+
+    const [isAdded, setIsAdded] = React.useState(added);
+    const onClickPlus = () => {
+        onPlus({ id, exhibitionName, exhibitionImageURL, exhibitionPrice });
+        setIsAdded(!isAdded);
+
+    }
+   
+
+
     return (<div className="cartItem">
-        <img width={120} height={100} src="/img/pizza/p1.jpg" alt="Pizza" />
+        <img className="CardImg" width={70} height={70} src={exhibitionImageURL} alt="Pizza" />
+
+        <h5>{exhibitionName} </h5>
+        <span >Price:</span>
+        <b>{exhibitionPrice}</b>
+        <div className="cardButt"></div>
+        <div className="Price"></div>
         <div>
-            <p>Pizza "Margorita" </p>
-            <b>20$</b>
+           
+
+            <button className="removeButton" onClick={onClickPlus}>
+                <img width={21} height={21} src={isAdded ? '/img/added.png' : '/img/add.png'} alt="Add" />
+            </button>
+           
         </div>
-        <button className="removeButton">
-            <img width={21} height={21} src="/img/remove.png" alt="Remove" />
-        </button>
+
     </div>);
 }
 export default CardItems;

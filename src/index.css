@@ -100,9 +100,9 @@ b{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .Price
+}
 
-{
+Price {
     display: flex;
     align-items: center;
 }
@@ -110,7 +110,7 @@ b{
 
 
 
-}
+
 .button {
     background: #ffffff;
     border: 1px solid #000000;
@@ -221,7 +221,7 @@ b{
 
 .drawer {
     position: absolute;
-    width: 420px;
+    width: 30%;
     height: 100%;
     right: 0;
     background: #ffffff;
@@ -277,7 +277,8 @@ b{
     justify-content: space-between;
     border: 1px solid #000000;
     border-radius: 20px;
-    margin-bottom:20px;
+    margin-bottom: 20px;
+    align-items: center;
     overflow: hidden;
     p {
           
@@ -288,6 +289,27 @@ b{
           font-size:14px;
       }   
       }
+
+
+
+
+.CardImg {
+    margin-right: 10px;
+}
+
+h5 {
+    margin: 0;
+}
+
+.Price {
+    margin-top: 5px;
+}
+
+.removeButton {
+    margin-left: auto;
+   
+   
+}
 
 
 
@@ -417,7 +439,7 @@ b{
 
 .drawerFavorite {
     position: absolute;
-    width: 700px;
+    width: 50%;
     height: 100%;
     right: 0;
     background: #ffffff;
@@ -437,8 +459,17 @@ b{
         margin: 0;
         font-size: 24px;
         margin-bottom: 30px;
-    } 
+    }
 
+login1 {
+    display: flex;
+    align-items: center;
+}
+
+login1 {
+    display: flex;
+    align-items: center;
+}
 
 
  
