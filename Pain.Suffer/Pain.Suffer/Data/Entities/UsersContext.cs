@@ -10,5 +10,7 @@ namespace Pain.Suffer.Data.Entities
             
         }
         public DbSet<Users> Users { get; set; }
+
+       
     }
 }

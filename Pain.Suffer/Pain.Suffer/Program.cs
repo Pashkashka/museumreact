@@ -36,6 +36,16 @@ builder.Services.AddDbContext<ExhibitionContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MuseumConnection"));
 });
 
+builder.Services.AddDbContext<UserCartContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MuseumConnection"));
+});
+
+builder.Services.AddDbContext<FavoritesContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MuseumConnection"));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

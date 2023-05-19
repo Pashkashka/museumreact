@@ -20,5 +20,13 @@ namespace Pain.Suffer.Controllers
             var users = await _userscontext.Users.ToListAsync();
             return Ok(users);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Users users)
+        {
+            _userscontext.Users.Add(users);
+            await _userscontext.SaveChangesAsync();
+            return Ok(users);
+        }
     }
 }
