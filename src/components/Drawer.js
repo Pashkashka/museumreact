@@ -1,8 +1,19 @@
 import React from 'react';
 import CardItems from './CardItems';
-function Drawer({ onAddToCart, onCloseCart, onRemove, items = [] }) {
-   
+import axios from 'axios';
+import { AppContext } from '../App'
 
+function Drawer({ onAddToCart, onCloseCart, onRemove, items = [], setCartOpened  }) {
+    const { cartItems, setCartItems } = React.useContext(AppContext);
+
+   // const [isOrderComplete, setIsOrderComplete] = React.useState(false);
+
+   const onClickOrder = () => {
+        axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites', items);
+        
+        setCartItems([]);
+    }
+    
     return (
         <div className="overlay">
             <div className="drawer">
@@ -12,18 +23,21 @@ function Drawer({ onAddToCart, onCloseCart, onRemove, items = [] }) {
                 <h2>Cart</h2>
 
                 <div className="Items">
-                    {items.map((item, index) => (
-                        <CardItems
-
-                            key={index}
-                            id={item.id}
-                            exhibitionName={item.exhibitionName}
-                            exhibitionPrice={item.exhibitionPrice}
-                            exhibitionImageURL={item.exhibitionImageURL}
-                            onPlus={(obj) => onAddToCart(obj)}
-                            added={true }
-
-                        />))}
+                    {items.length > 0 ? (
+                        items.map((item, index) => (
+                            <CardItems
+                                key={index}
+                                id={item.id}
+                                exhibitionName={item.exhibitionName}
+                                exhibitionPrice={item.exhibitionPrice}
+                                exhibitionImageURL={item.exhibitionImageURL}
+                                onPlus={(obj) => onAddToCart(obj)}
+                                added={true}
+                            />
+                        ))
+                    ) : (
+                        
+                                 <h1> Cart is empty</h1>)}
                 </div>
 
                 <ul className="cartTotalBlok">
@@ -34,7 +48,7 @@ function Drawer({ onAddToCart, onCloseCart, onRemove, items = [] }) {
                     </li>
                 </ul>
 
-                <button className="chekBtn">Chekout</button>
+                <button onClick={onClickOrder} className="chekBtn">Chekout</button>
             </div>
         </div>
     );

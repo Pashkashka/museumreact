@@ -3,20 +3,25 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Autorization() {
-    const [email, setEmail] = React.useState('');
+    const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [user, setUser] = React.useState(null);
 
     const handleLogin = (e) => {
         e.preventDefault();
-        axios.post('https://644b992817e2663b9df340a0.mockapi.io/Items', {
-            email,
+        axios.post('https://646cd32b7b42c06c3b2c1813.mockapi.io/login', {
+            login,
             password,
         }).then((res) => {
             localStorage.setItem('token', res.data.token);
-            window.location.href='/';
-        }).catch((err) => {
-            console.error(err);
-            alert('Ошибка авторизации');
+            axios.get(`https://646cd32b7b42c06c3b2c1813.mockapi.io/Users?search=${login}`).then((res) => {
+                localStorage.setItem('userId', res.data[0].id); // Добавляем id пользователя в LocalStorage
+                setUser(res.data[0]);
+                window.location.href = '/';
+            }).catch((err) => {
+                console.error(err);
+                alert('Autorization error');
+            });
         });
     };
 
@@ -33,18 +38,18 @@ function Autorization() {
                 </Link>
 
                 <div className="login">
-                    <input placeholder="Email..." value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input placeholder="Login..." value={login} onChange={(e) => setLogin(e.target.value)} />
                 </div>
                 <div className="login">
                     <input placeholder="Password..." value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <a href="/" className="Link" onClick={handleLogin}>
-                <button className="logBtn" >
+               
+                    <button className="logBtn" onClick={handleLogin} >
                
                         Log in
                    
                     </button>
-                </a>
+               
             </div>
         </div>
     );

@@ -6,7 +6,9 @@ function Exhibitions({
     onAddToFavorite,
     museum,
     favoriteItems,
-    cartItems
+    cartItems,
+    userId
+
 }) {
     return (<div className="content">
         <h1>{museum.name}</h1>
@@ -34,11 +36,12 @@ function Exhibitions({
                     <Card
 
                         key={index}
-                        {...item }
+                        {...item}
                         onPlus={(obj) => onAddToCart(obj)}
                         onFavorite={(obj) => onAddToFavorite(obj)}
                         favorited={favoriteItems.some((obj) => Number(obj.id) === Number(item.id))}
                         added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
+                        userId={userId}
 
                     />
 

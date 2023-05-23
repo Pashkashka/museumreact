@@ -1,6 +1,11 @@
 import Card from './Card';
+import React from 'react';
 
-function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove, items = [] }) {
+import axios from 'axios';
+
+function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove,favoriteItems=[] }) {
+
+   
     return (
         <div className="overlay">
             <div className="drawerFavorite">
@@ -10,7 +15,7 @@ function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove, it
                 <h2>Favorites</h2>
 
                 <div className="Pizza">
-                    {items.map((item, index) => (
+                    {  favoriteItems.map((item, index) => (
                         <Card
 
                             key={index}

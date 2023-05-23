@@ -19,7 +19,7 @@ function Registration() {
 
     const handleLogin1 = (e) => {
         e.preventDefault();
-        axios.post('https://localhost:7045/Users', {
+        axios.post('https://646cd32b7b42c06c3b2c1813.mockapi.io/Users', {
             email,
             password,
             name,
@@ -28,10 +28,10 @@ function Registration() {
             countryCodeId
         }).then((res) => {
             localStorage.setItem('token', res.data.token);
-            window.location.href = '/';
+            window.location.href = '/login';
         }).catch((err) => {
             console.error(err);
-            alert('Autorisation Error');
+            alert('Registration Error');
         });
     };
 
@@ -69,16 +69,14 @@ function Registration() {
                 <div className="login">
                     <input placeholder="Name..." value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
-                <div className="login">
-                    <input placeholder="Login..." value={login} onChange={(e) => setLogin(e.target.value)} />
-                </div>
-                <a href="/" className="Link" onClick={handleLogin1}>
-                    <button className="logBtn"  >
+                
+               
+                <button className="logBtn" onClick= {handleLogin1}>
 
                         Sign up
 
                     </button>
-                </a>
+              
 
 
             </div>

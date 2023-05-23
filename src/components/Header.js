@@ -24,13 +24,13 @@ function Header(props) {
             </Link>
             <li >
                 <button className="buttonCart" onClick={props.onClickCart}>
-                    <img width={23} height={23} src="/img/cart.png "  alt="Cart"/>
+                    <img width={23} height={20} src="/img/cart.png "  alt="Cart"/>
                 </button>
                 <span> 0$.</span>
             </li>
             <li>
                 <button className="buttonUser" onClick={props.onClickUser}>
-                    <img width={23} height={18} src="/img/user.png "  alt="user"/>
+                    <img width={23} height={23} src="/img/user.png "  alt="user"/>
                 </button>
             </li>
             <li>

@@ -16,7 +16,7 @@ import Registration from './components/Registration';
 
 
 
-
+ export const AppContext = React.createContext({});
 
 
 
@@ -31,11 +31,11 @@ function App() {
     const onAddToCart = async (obj) => {
         try {
             if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-                axios.delete(`https://644b992817e2663b9df340a0.mockapi.io/Items/${obj.id}`);
+                axios.delete(`https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/${obj.id}`);
                 setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
             }
             else {
-                const { data } = await axios.post('https://644b992817e2663b9df340a0.mockapi.io/Items', obj);
+                const { data } = await axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart', obj);
                 setCartItems((prev) => [...prev, data]);
             }
 
@@ -47,11 +47,11 @@ function App() {
     const onAddToFavorite = async (obj) => {
         try {
             if (favoriteItems.find((item) => Number(item.id) === Number(obj.id))) {
-                axios.delete(`https://644b992817e2663b9df340a0.mockapi.io/Items/${obj.id}`);
+                axios.delete(`https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites/${obj.id}`);
                 setFavoriteItems((prev) => prev.filter((item) => Number(item.id )!== Number(obj.id)));
             }
             else {
-                const { data } = await axios.post('https://644b992817e2663b9df340a0.mockapi.io/Items', obj);
+                const { data } = await axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites', obj);
                 setFavoriteItems((prev) => [...prev, data]);
             }
 
@@ -73,7 +73,7 @@ function App() {
         });
     };*/
 
-
+    const museumCodeId = localStorage.getItem('museumCodeId');
 
     const [items, setItems] = React.useState([]);
     React.useEffect(() => {
@@ -84,9 +84,7 @@ function App() {
          
     }, []);
 
-    const [cartItems, setCartItems] = React.useState([]);
-    const [favoriteItems, setFavoriteItems] = React.useState([]);
-
+   
 
    /* const onRemoveCartItem = (id) => {
        // console.log(id);
@@ -101,35 +99,45 @@ function App() {
     const [userOpened, setUserOpened] = React.useState(false);
     const [museums, setMuseums] = React.useState([]);
     const [user, setUser] = React.useState([]);
-
+    const [cartItems, setCartItems] = React.useState([]);
+    const [favoriteItems, setFavoriteItems] = React.useState([]);
    
 
     React.useEffect(() => {
-
+       
         
+
             axios.get('https://644b992817e2663b9df340a0.mockapi.io/museums').then((res) => {
                 setMuseums(res.data);
             });
-        axios.get('https://644b992817e2663b9df340a0.mockapi.io/Items').then((res) => {
-                    setCartItems(res.data);
-                });
-        axios.get('https://644b992817e2663b9df340a0.mockapi.io/Items').then((res) => {
-                    setFavoriteItems(res.data);
-                });
-      /*  axios.get('').then((res) => {
-            setUser(res.data);
-        });*/
 
-      
-            
-        
+        axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart').then((res) => {
+            setCartItems(res.data);
+        });
+
+        axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites').then((res) => {
+            setFavoriteItems(res.data);
+        });
+       
         
     }, []);
+
+
+    const userId = localStorage.getItem('userId');
+
+    
+
+   
     const [selectedMuseum, setSelectedMuseum] = React.useState(null);
     const handleMuseumClick = (museum) => {
-        setSelectedMuseum(museum);
-        setItems(items.filter(item => item.museumCodeId === museum.id));
+         setSelectedMuseum(museum);
+         setItems(items.filter(item => item.museumCodeId === museum.id));
+       
+       
     };
+    
+    
+
 
 
     const [searchValue, setSearchValue] = React.useState('');
@@ -142,28 +150,28 @@ function App() {
 
     return (
         <Router>
-
-            <div className="wrapper">
-
-           
-
-                {cartOpened ? <Drawer items={cartItems} onCloseCart={() => setCartOpened(false)} onAddToCart={onAddToCart} /> : null}
-                {userOpened ? <User user={user} onCloseUser={() => setUserOpened(false)} /> : null}
-
-                {favoriteOpened ? <  Favorites items={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)} onAddToCart={onAddToCart}  onAddToFavorite={onAddToFavorite }  /> : null}
-
-                <Header
-                    onClickCart={() => setCartOpened(true)}
-                    onClickFavorite={() => setFavoriteOpened(true)}
-                    onClickUser={() => setUserOpened(true)} />
+            <AppContext.Provider value={{ items, cartItems, favoriteItems, setCartOpened, setCartItems } }>
+                <div className="wrapper">
 
 
-                <Routes>
-                    <Route path="/exhibitions" element=
 
-                        {selectedMuseum && <Exhibitions
-                        cartItems={cartItems }
-                        favoriteItems={favoriteItems }
+                    {cartOpened ? <Drawer cartItems={items} onCloseCart={() => setCartOpened(false)} onAddToCart={onAddToCart} setCartOpened={setCartOpened}  /> : null}
+                    {userOpened ? <User userId={userId} onCloseUser={() => setUserOpened(false)} /> : null}
+
+                    {favoriteOpened ? <  Favorites favoriteItems={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)} onAddToCart={onAddToCart} onAddToFavorite={onAddToFavorite} /> : null}
+
+                    <Header
+                        onClickCart={() => setCartOpened(true)}
+                        onClickFavorite={() => setFavoriteOpened(true)}
+                        onClickUser={() => setUserOpened(true)} />
+
+
+                    <Routes>
+                        <Route path="/exhibitions" element=
+
+                            { selectedMuseum &&  <Exhibitions
+                            cartItems={cartItems}
+                            favoriteItems={favoriteItems}
                             onChangeSearchInput={onChangeSearchInput}
                             searchValue={searchValue}
                             setSearchValue={setSearchValue}
@@ -171,26 +179,39 @@ function App() {
                             onAddToCart={onAddToCart}
                             onAddToFavorite={onAddToFavorite}
                             museum={selectedMuseum}
-                        />}> </Route>
+                           
+                            />}> </Route>
 
-                    <Route path="/" element={
-                        <Museums
+                        <Route path="/" element={
+                            <Museums
+
+                                museums={museums}
+                                onMuseumClick={handleMuseumClick}
+                                onChangeSearchInput={onChangeSearchInput}
+                                searchValue={searchValue}
+                                setSearchValue={setSearchValue} />}>
+                        </Route>
+                        <Route path="/login" element={
+                            <Autorization
                             
-                            museums={museums}
-                            onMuseumClick={handleMuseumClick}
-                            onChangeSearchInput={onChangeSearchInput}
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue} />}>
-                    </Route>
-                    <Route path="/login" element={<Autorization /> }> </Route>
-                    <Route path="/registration" element={< Registration /> }>
-                       
-                    </Route>
 
-                </Routes>
+                            />}> </Route>
+                        <Route path="/registration" element={< Registration
+                            
 
 
-            </div>
+                        />}>
+
+                        </Route>
+
+                    </Routes>
+
+
+                </div>
+            </AppContext.Provider>
+        
+
+           
         </Router>
 
     );

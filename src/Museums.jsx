@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import ContentLoader from "react-content-loader"
 
-function Museums({isLoading, museums, onChangeSearchInput, searchValue, setSearchValue, onMuseumClick }) {
+function Museums({ isLoading, museums, onChangeSearchInput, searchValue, setSearchValue, onMuseumClick }) {
+
     return (
         <div className="content">
 
@@ -30,7 +31,7 @@ function Museums({isLoading, museums, onChangeSearchInput, searchValue, setSearc
                                 <div>
                                     <div>
                                         <span>Price:</span>
-                                        <b>{museum.priceMIN}-{museum.priceMAX}</b>
+                                        <b>{museum.priceMIN}-{museum.priceMAX}Rub</b>
                                     </div>
                                 </div> 
                                  

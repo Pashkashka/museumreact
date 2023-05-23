@@ -15,10 +15,11 @@ function CardItems({ id,  onPlus, exhibitionName, exhibitionPrice, exhibitionIma
 
     return (<div className="cartItem">
         <img className="CardImg" width={70} height={70} src={exhibitionImageURL} alt="Pizza" />
-
+        
         <h5>{exhibitionName} </h5>
         <span >Price:</span>
         <b>{exhibitionPrice}</b>
+       
         <div className="cardButt"></div>
         <div className="Price"></div>
         <div>

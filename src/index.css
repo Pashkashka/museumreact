@@ -4,7 +4,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #cccccc;
+   
 }
+
 
 * {
     font-family: 'Inter',system-ui;
@@ -24,6 +26,7 @@ header {
     justify-content: space-between;
     background-color: #ffffff;
     width: 100vw;
+    
     .headerLeft
 
 {
@@ -57,7 +60,7 @@ h3, p {
 
 .card {
     background-color: #808080;
-  
+   
     border: 1px solid #000000;
     padding: 30px;
     width: 220px;
@@ -182,22 +185,23 @@ Price {
 
 
 .search-blok {
-  
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
     float: right;
-    display:flex;
-    input{
-             border:0;
-             padding: 10px;
-             font-size:16px;
-             width:100px;
-             float: right;
-            
-         }
+    display: flex;
+   
+    
          
 }
+    .search-blok input {
+        border-radius: 8px;
+        border: 1px solid #000000;
+        padding: 3px;
+        font-size: 16px;
+        width: 120px;
+        float: right;
+    }
 
 
 .search-blok img {
@@ -246,11 +250,12 @@ Price {
 
 
 
-   
-    .removeButton{
-        float:right;
-        cursor:pointer;
-    }
+
+.removeButton {
+    float: right;
+    cursor: pointer;
+    border-radius: 8px;
+}
 
 
 
@@ -295,6 +300,7 @@ Price {
 
 .CardImg {
     margin-right: 10px;
+    border-radius: 20px;
 }
 
 h5 {
