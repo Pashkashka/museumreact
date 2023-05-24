@@ -15,7 +15,7 @@ function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove,fav
                 <h2>Favorites</h2>
 
                 <div className="Pizza">
-                    {  favoriteItems.map((item, index) => (
+                    { favoriteItems.length> 0 ? (favoriteItems.map((item, index) => (
                         <Card
 
                             key={index}
@@ -27,7 +27,7 @@ function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove,fav
                             onFavorite={(obj) => onAddToFavorite(obj)}
                             favorited={true }
 
-                        />))}
+                        />))):(<h1>Favorites is empty</h1>)}
 
 
 

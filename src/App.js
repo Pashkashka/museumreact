@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import Museums from './Museums';
 import Exhibitions from './Exhibitions';
 import Registration from './components/Registration';
+import Orders from './components/Orders'
 
 
 
@@ -73,7 +74,7 @@ function App() {
         });
     };*/
 
-    const museumCodeId = localStorage.getItem('museumCodeId');
+    //const museumCodeId = localStorage.getItem('museumCodeId');
 
     const [items, setItems] = React.useState([]);
     React.useEffect(() => {
@@ -101,6 +102,8 @@ function App() {
     const [user, setUser] = React.useState([]);
     const [cartItems, setCartItems] = React.useState([]);
     const [favoriteItems, setFavoriteItems] = React.useState([]);
+    const [totalPrice, setTotalPrice] = React.useState(0);
+    
    
 
     React.useEffect(() => {
@@ -114,8 +117,9 @@ function App() {
         axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart').then((res) => {
             setCartItems(res.data);
         });
+       
 
-        axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites').then((res) => {
+       axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites').then((res) => {
             setFavoriteItems(res.data);
         });
        
@@ -145,31 +149,34 @@ function App() {
         setSearchValue(event.target.value);
     };
 
-
+    const [ordersOpened, setOrdersOpened] = React.useState(false);
     
 
     return (
         <Router>
-            <AppContext.Provider value={{ items, cartItems, favoriteItems, setCartOpened, setCartItems } }>
+            
                 <div className="wrapper">
 
 
 
-                    {cartOpened ? <Drawer cartItems={items} onCloseCart={() => setCartOpened(false)} onAddToCart={onAddToCart} setCartOpened={setCartOpened}  /> : null}
-                    {userOpened ? <User userId={userId} onCloseUser={() => setUserOpened(false)} /> : null}
+                {cartOpened ? <Drawer   cartItems={cartItems} onCloseCart={() => setCartOpened(false)} onAddToCart={onAddToCart} setCartItems={setCartItems} /> : null}
+                {userOpened ? <User cartItems={cartItems} favoriteItems={favoriteItems} userId={userId} onCloseUser={() => setUserOpened(false)} onClickOrders={() => setOrdersOpened(true)} /> : null}
 
-                    {favoriteOpened ? <  Favorites favoriteItems={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)} onAddToCart={onAddToCart} onAddToFavorite={onAddToFavorite} /> : null}
+                {favoriteOpened ? <  Favorites favoriteItems={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)} onAddToCart={onAddToCart} onAddToFavorite={onAddToFavorite} /> : null}
+                {ordersOpened ? <Orders onCloseOrders={() => setOrdersOpened(false)} />: null }
 
                     <Header
-                        onClickCart={() => setCartOpened(true)}
-                        onClickFavorite={() => setFavoriteOpened(true)}
-                        onClickUser={() => setUserOpened(true)} />
+                    onClickCart={() => setCartOpened(true)}
+                    onClickFavorite={() => setFavoriteOpened(true)}
+                    onClickUser={() => setUserOpened(true)}
+                    cartItems={cartItems }
 
+                />
 
-                    <Routes>
-                        <Route path="/exhibitions" element=
+<Routes>
+                    <Route path="/exhibitions" element=
 
-                            { selectedMuseum &&  <Exhibitions
+                        {selectedMuseum && <Exhibitions
                             cartItems={cartItems}
                             favoriteItems={favoriteItems}
                             onChangeSearchInput={onChangeSearchInput}
@@ -179,18 +186,16 @@ function App() {
                             onAddToCart={onAddToCart}
                             onAddToFavorite={onAddToFavorite}
                             museum={selectedMuseum}
-                           
-                            />}> </Route>
+                        />}> </Route>
+                    <Route path="/" element={
+                        <Museums
 
-                        <Route path="/" element={
-                            <Museums
-
-                                museums={museums}
-                                onMuseumClick={handleMuseumClick}
-                                onChangeSearchInput={onChangeSearchInput}
-                                searchValue={searchValue}
-                                setSearchValue={setSearchValue} />}>
-                        </Route>
+                            museums={museums}
+                            onMuseumClick={handleMuseumClick}
+                            onChangeSearchInput={onChangeSearchInput}
+                            searchValue={searchValue}
+                            setSearchValue={setSearchValue} />}>
+                    </Route>
                         <Route path="/login" element={
                             <Autorization
                             
@@ -208,7 +213,7 @@ function App() {
 
 
                 </div>
-            </AppContext.Provider>
+           
         
 
            

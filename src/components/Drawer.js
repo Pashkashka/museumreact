@@ -1,19 +1,23 @@
 import React from 'react';
 import CardItems from './CardItems';
 import axios from 'axios';
-import { AppContext } from '../App'
 
-function Drawer({ onAddToCart, onCloseCart, onRemove, items = [], setCartOpened  }) {
-    const { cartItems, setCartItems } = React.useContext(AppContext);
 
-   // const [isOrderComplete, setIsOrderComplete] = React.useState(false);
-
-   const onClickOrder = () => {
-        axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites', items);
-        
+//const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+function Drawer({ onAddToCart, onCloseCart, onRemove, cartItems = [],setCartItems }) {
+    const onClickOrder = async () => {
+        axios.post('/Orders', { items: cartItems });
+       // axios.put('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart');
+        for (let i = 0; i < cartItems.length; i++) {
+            const item = cartItems[i];
+            await axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/' + item.id);
+            // await  delay(500);
+        }
         setCartItems([]);
     }
-    
+
+    const totalPrice = cartItems.reduce((sum, obj) => Number(obj.exhibitionPrice) + sum, 0);
+  
     return (
         <div className="overlay">
             <div className="drawer">
@@ -23,8 +27,8 @@ function Drawer({ onAddToCart, onCloseCart, onRemove, items = [], setCartOpened 
                 <h2>Cart</h2>
 
                 <div className="Items">
-                    {items.length > 0 ? (
-                        items.map((item, index) => (
+                    { cartItems.length >0 ?
+                        (cartItems.map((item, index) => (
                             <CardItems
                                 key={index}
                                 id={item.id}
@@ -34,21 +38,19 @@ function Drawer({ onAddToCart, onCloseCart, onRemove, items = [], setCartOpened 
                                 onPlus={(obj) => onAddToCart(obj)}
                                 added={true}
                             />
-                        ))
-                    ) : (
-                        
-                                 <h1> Cart is empty</h1>)}
+
+                        ))) : (<h1>Cart is empty</h1>)}
                 </div>
 
                 <ul className="cartTotalBlok">
                     <li className="Total">
                         <span>Total:</span>
                         <div></div>
-                        <b>0Rub</b>
+                        <b>{totalPrice}Rub</b>
                     </li>
                 </ul>
 
-                <button onClick={onClickOrder} className="chekBtn">Chekout</button>
+                <button onClick={ onClickOrder} className="chekBtn">Chekout</button>
             </div>
         </div>
     );

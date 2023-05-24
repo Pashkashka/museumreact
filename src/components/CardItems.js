@@ -2,11 +2,11 @@ import React from 'react';
 
 
 function CardItems({ id,  onPlus, exhibitionName, exhibitionPrice, exhibitionImageURL, added = false }) {
-
+    const userId = localStorage.getItem('userId');
 
     const [isAdded, setIsAdded] = React.useState(added);
     const onClickPlus = () => {
-        onPlus({ id, exhibitionName, exhibitionImageURL, exhibitionPrice });
+        onPlus({userId ,id, exhibitionName, exhibitionImageURL, exhibitionPrice });
         setIsAdded(!isAdded);
 
     }

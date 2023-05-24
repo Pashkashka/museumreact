@@ -478,6 +478,30 @@ login1 {
 }
 
 
+.ExitButton {
+    background: #f41a1a;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 18px;
+    margin-top: 400px;
+    height: 50px;
+    width: 300px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    
+&:activate {
+    background: lighten (#afd10c, 5%);
+}
+
+}
+.ExitButton:hover {
+    background: lighten (#9dd558, 5%);
+}
+
+.clickOrders{
+    margin-top: 20px;
+    cursor: pointer;
+}
  
 
       
