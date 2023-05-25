@@ -104,7 +104,7 @@ function App() {
     const [favoriteItems, setFavoriteItems] = React.useState([]);
     const [totalPrice, setTotalPrice] = React.useState(0);
     
-   
+   // const (cartItemsId, setCartItemsId) = React.useState(null);
 
     React.useEffect(() => {
        
@@ -113,10 +113,13 @@ function App() {
             axios.get('https://644b992817e2663b9df340a0.mockapi.io/museums').then((res) => {
                 setMuseums(res.data);
             });
+    
+        
+            axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart').then((res) => {
+                setCartItems(res.data);
+            });
 
-        axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart').then((res) => {
-            setCartItems(res.data);
-        });
+       
        
 
        axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites').then((res) => {
@@ -128,7 +131,9 @@ function App() {
 
 
     const userId = localStorage.getItem('userId');
-
+   
+    
+   
     
 
    

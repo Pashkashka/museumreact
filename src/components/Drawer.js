@@ -6,11 +6,16 @@ import axios from 'axios';
 //const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function Drawer({ onAddToCart, onCloseCart, onRemove, cartItems = [],setCartItems }) {
     const onClickOrder = async () => {
-        axios.post('/Orders', { items: cartItems });
-       // axios.put('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart');
         for (let i = 0; i < cartItems.length; i++) {
             const item = cartItems[i];
-            await axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/' + item.id);
+          await  axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites', item);
+            // await  delay(500);
+        }
+        //axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites/' + item.id);
+       // axios.put('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart');
+       for (let i = 0; i < cartItems.length; i++) {
+            const item = cartItems[i];
+           await  axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/' + item.id);
             // await  delay(500);
         }
         setCartItems([]);
