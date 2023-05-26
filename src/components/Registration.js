@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import axios from 'axios';
@@ -8,13 +9,27 @@ function Registration() {
     const [phoneNum, setPhoneNum] = React.useState('');
     const [name, setName] = React.useState('');
     const [login, setLogin] = React.useState('');
+    const [countryCodeId, setCountryCodeId] = React.useState('+7');
+    const [options, setOptions] = React.useState([]);
 
-    const [countryCodeId, setCountryCodeId] =React.useState('+7');
-    const options = ['+7', '1', '0'];
+    React.useEffect(() => {
+        axios
+            .get("country code id")
+            .then((res) => {
+                setOptions(
+                    res.data.map((item) => ({
+                        value: `${item.countryCode} ${item.country}`,
+                        label: `(${item.countryCode}) ${item.country}`
+                    })).map((option) => option.value) // преобразуем в массив строк
+                );
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     const handleOptionChange = (event) => {
         setCountryCodeId(event.target.value);
     };
+
 
 
     const handleLogin1 = (e) => {
@@ -61,7 +76,7 @@ function Registration() {
                             </option>
                         ))}
                     </select>
-                   
+
                 </div>
                 <div className="login">
                     <input placeholder="Phone Number..." value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)} />
@@ -69,14 +84,14 @@ function Registration() {
                 <div className="login">
                     <input placeholder="Name..." value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
-                
-               
-                <button className="logBtn" onClick= {handleLogin1}>
 
-                        Sign up
 
-                    </button>
-              
+                <button className="logBtn" onClick={handleLogin1}>
+
+                    Sign up
+
+                </button>
+
 
 
             </div>

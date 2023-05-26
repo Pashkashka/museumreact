@@ -3,9 +3,9 @@ import React from 'react';
 
 import axios from 'axios';
 
-function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove,favoriteItems=[] }) {
+function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove, favoriteItems = [] }) {
 
-   
+
     return (
         <div className="overlay">
             <div className="drawerFavorite">
@@ -15,19 +15,19 @@ function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove,fav
                 <h2>Favorites</h2>
 
                 <div className="Pizza">
-                    { favoriteItems.length> 0 ? (favoriteItems.map((item, index) => (
+                    {favoriteItems.length > 0 ? (favoriteItems.map((item, index) => (
                         <Card
 
                             key={index}
-                            id={item.id }
+                            id={item.id}
                             exhibitionName={item.exhibitionName}
                             exhibitionPrice={item.exhibitionPrice}
                             exhibitionImageURL={item.exhibitionImageURL}
                             onPlus={(obj) => onAddToCart(obj)}
                             onFavorite={(obj) => onAddToFavorite(obj)}
-                            favorited={true }
+                            favorited={true}
 
-                        />))):(<h1>Favorites is empty</h1>)}
+                        />))) : (<h1>Favorites is empty</h1>)}
 
 
 

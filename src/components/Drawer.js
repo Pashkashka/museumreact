@@ -4,25 +4,24 @@ import axios from 'axios';
 
 
 //const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-function Drawer({ onAddToCart, onCloseCart, onRemove, cartItems = [],setCartItems }) {
+function Drawer({ onAddToCart, onCloseCart, onRemove, cartItems = [], setCartItems }) {
     const onClickOrder = async () => {
         for (let i = 0; i < cartItems.length; i++) {
             const item = cartItems[i];
-          await  axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites', item);
+            await axios.post('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders', item);
             // await  delay(500);
         }
-        //axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites/' + item.id);
-       // axios.put('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart');
-       for (let i = 0; i < cartItems.length; i++) {
+        
+        for (let i = 0; i < cartItems.length; i++) {
             const item = cartItems[i];
-           await  axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/' + item.id);
+            await axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/' + item.id);
             // await  delay(500);
         }
         setCartItems([]);
     }
 
     const totalPrice = cartItems.reduce((sum, obj) => Number(obj.exhibitionPrice) + sum, 0);
-  
+
     return (
         <div className="overlay">
             <div className="drawer">
@@ -32,7 +31,7 @@ function Drawer({ onAddToCart, onCloseCart, onRemove, cartItems = [],setCartItem
                 <h2>Cart</h2>
 
                 <div className="Items">
-                    { cartItems.length >0 ?
+                    {cartItems.length > 0 ?
                         (cartItems.map((item, index) => (
                             <CardItems
                                 key={index}
@@ -55,7 +54,7 @@ function Drawer({ onAddToCart, onCloseCart, onRemove, cartItems = [],setCartItem
                     </li>
                 </ul>
 
-                <button onClick={ onClickOrder} className="chekBtn">Chekout</button>
+                <button onClick={onClickOrder} className="chekBtn">Chekout</button>
             </div>
         </div>
     );

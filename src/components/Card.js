@@ -1,22 +1,23 @@
+
 import React from 'react';
 
 
-function Card({id, onFavorite, onPlus, exhibitionName, exhibitionPrice, exhibitionImageURL, favorited=false, added=false }) {
+function Card({ id, onFavorite, onPlus, exhibitionName, exhibitionPrice, exhibitionImageURL, favorited = false, added = false }) {
 
-    const userId = localStorage.getItem('userId');
+   // const userId = localStorage.getItem('userId');
     const [isAdded, setIsAdded] = React.useState(added);
     const onClickPlus = () => {
-        onPlus({userId, id, exhibitionName, exhibitionImageURL, exhibitionPrice });
+        onPlus({ id, exhibitionName, exhibitionImageURL, exhibitionPrice });
         setIsAdded(!isAdded);
 
     }
     const [isFavorite, setIsFavorite] = React.useState(favorited);
     const onClickFavorite = () => {
-        onFavorite({userId, id, exhibitionName, exhibitionImageURL, exhibitionPrice });
+        onFavorite({ id, exhibitionName, exhibitionImageURL, exhibitionPrice });
         setIsFavorite(!isFavorite);
     }
 
-    
+
     return (<div className="card">
         <img className="CardImg" width={200} height={200} src={exhibitionImageURL} alt="Pizza" />
 
