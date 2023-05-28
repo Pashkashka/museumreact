@@ -9,17 +9,17 @@ function Registration() {
     const [phoneNum, setPhoneNum] = React.useState('');
     const [name, setName] = React.useState('');
     const [login, setLogin] = React.useState('');
-    const [countryCodeId, setCountryCodeId] = React.useState('+7');
+    const [countryCodeId, setCountryCodeId] = React.useState(' ');
     const [options, setOptions] = React.useState([]);
 
     React.useEffect(() => {
         axios
-            .get("country code id")
+            .get('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders')
             .then((res) => {
                 setOptions(
                     res.data.map((item) => ({
-                        value: `${item.countryCode} ${item.country}`,
-                        label: `(${item.countryCode}) ${item.country}`
+                        value: `${item.country} ${item.countryCode}`,
+                        label: `(${item.country}) ${item.countryCode}`
                     })).map((option) => option.value) // преобразуем в массив строк
                 );
             })

@@ -17,7 +17,8 @@ function Drawer({ onAddToCart, onCloseCart, onRemove, cartItems = [], setCartIte
             await axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/' + item.id);
             // await  delay(500);
         }
-        setCartItems([]);
+       // setCartItems([]);
+        window.location.href = '/';
     }
 
     const totalPrice = cartItems.reduce((sum, obj) => Number(obj.exhibitionPrice) + sum, 0);

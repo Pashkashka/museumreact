@@ -102,6 +102,7 @@ function App() {
     const [user, setUser] = React.useState([]);
     const [cartItems, setCartItems] = React.useState([]);
     const [favoriteItems, setFavoriteItems] = React.useState([]);
+    const [orders, setOrders] = React.useState([]);
     const [totalPrice, setTotalPrice] = React.useState(0);
     
    // const (cartItemsId, setCartItemsId) = React.useState(null);
@@ -125,7 +126,10 @@ function App() {
        axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites').then((res) => {
             setFavoriteItems(res.data);
         });
-       
+
+        axios.get('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders').then((res) => {
+            setOrders(res.data);
+        });
         
     }, []);
 
@@ -133,7 +137,7 @@ function App() {
     const userId = localStorage.getItem('userId');
    
     
-   
+  
     
 
    
@@ -165,10 +169,10 @@ function App() {
 
 
                 {cartOpened ? <Drawer   cartItems={cartItems} onCloseCart={() => setCartOpened(false)} onAddToCart={onAddToCart} setCartItems={setCartItems} /> : null}
-                {userOpened ? <User cartItems={cartItems} favoriteItems={favoriteItems} userId={userId} onCloseUser={() => setUserOpened(false)} onClickOrders={() => setOrdersOpened(true)} /> : null}
+                {userOpened ? <User cartItems={cartItems} favoriteItems={favoriteItems} orders={orders}  onCloseUser={() => setUserOpened(false)} onClickOrders={() => setOrdersOpened(true)} /> : null}
 
                 {favoriteOpened ? <  Favorites favoriteItems={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)} onAddToCart={onAddToCart} onAddToFavorite={onAddToFavorite} /> : null}
-                {ordersOpened ? <Orders onCloseOrders={() => setOrdersOpened(false)} />: null }
+                {ordersOpened ? <Orders orders={orders} onCloseOrders={() => setOrdersOpened(false)} />: null }
 
                     <Header
                     onClickCart={() => setCartOpened(true)}

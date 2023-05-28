@@ -4,9 +4,10 @@
     "\\public",
     "\\public\\img",
     "\\public\\img\\museums",
+    "\\public\\img\\museums\\pushkin",
     "\\src",
     "\\src\\components"
   ],
-  "SelectedNode": "\\src\\components\\Orders.js",
+  "SelectedNode": "\\src\\components\\OrdersItems.js",
   "PreviewInSolutionExplorer": false
 }

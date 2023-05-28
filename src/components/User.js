@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-function User({ onCloseUser, cartItems = [10], favoriteItems = [10], onClickOrders }) {
+function User({ onCloseUser, orders = [10], cartItems = [10], favoriteItems = [10], onClickOrders }) {
     const [user, setUser] = useState(null);
     const userId = localStorage.getItem('userId');
     const userLogin = localStorage.getItem('userLogin');
@@ -31,6 +31,10 @@ const Exit = async () => {
         const item = favoriteItems[i];
         await axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites/' + item.id);
     }
+    for (let i = 0; i < orders.length; i++) {
+        const item = orders[i];
+        await axios.delete('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders/' + item.id);
+    }
     localStorage.removeItem('userId'); // Удаляем id пользователя из LocalStorage
     localStorage.removeItem('userLogin'); // Удаляем логин пользователя из LocalStorage
     window.location.href = '/login';
@@ -56,7 +60,7 @@ return (
                 <span>Email:</span>
                 <b>{user.email}</b>
 
-                <span>Number:</span>
+                <span>Country and number:</span>
                 <b>{user.countryCodeId}{user.phoneNum}</b>
                 <b onClick={onClickOrders} className="clickOrders">My orders</b>
             </div>
