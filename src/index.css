@@ -4,13 +4,13 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #cccccc;
-   
 }
 
 
 * {
     font-family: 'Inter',system-ui;
 }
+
 wrapper {
     background: #ffffff;
     box-shadow: 0px 10px 20px rgba(0,0,0,0.04);
@@ -20,15 +20,13 @@ wrapper {
     padding: 40px;
     width: 100%;
 }
+
 header {
     border-bottom: 1px solid grey;
     display: flex;
     justify-content: space-between;
     background-color: #ffffff;
     width: 100%;
-    
-  
-    
     .headerLeft
 
 {
@@ -49,20 +47,20 @@ h3, p {
 
 
 .content {
-   margin-top:20px;
-    
+    margin-top: 20px;
     h1
+
 {
     margin: 0;
-   //margin-bottom: 40px;
+    //margin-bottom: 40px;
 }
+
 }
 
 
 
 .card {
     background-color: #808080;
-   
     border: 1px solid #000000;
     padding: 30px;
     width: 220px;
@@ -71,38 +69,41 @@ h3, p {
     margin-bottom: 20px;
     cursor: pointer;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-    &:hover {
+    &:hover
+
+{
     box-shadow: 0px 14px 30px rgba(0,0,0,0.05);
     transform: translateY(-5px);
 }
 
-
-
-
 }
+
 .Pizza {
     display: flex;
     flex-wrap: wrap;
 }
-    .CardImg {
 
-        padding: 10px;
-    }
+.CardImg {
+    padding: 10px;
+    background: #ffffff;
+}
 
 .card h5 {
     font-weight: 400;
     font-size: 14px;
     color: black;
 }
+
 .card span {
     font-size: 12px;
     opacity: 0,5;
     text-transform: uppercase;
-    color:black;
+    color: black;
 }
+
 .card b {
     font-size: 13px;
-    color:black;
+    color: black;
 }
 
 
@@ -132,6 +133,7 @@ Price {
     cursor: pointer;
     box-shadow: -10px 4px 24px rgba(0,0,0,0.1);
 }
+
     .button:active {
         background-color: #cccccc;
         box-shadow: none;
@@ -148,10 +150,11 @@ Price {
     width: 32px;
     cursor: pointer;
 }
-.buttonCart:active {
-    background-color: #cccccc;
-    box-shadow: none;
-}
+
+    .buttonCart:active {
+        background-color: #cccccc;
+        box-shadow: none;
+    }
 
 
 .buttonUser {
@@ -163,10 +166,11 @@ Price {
     width: 32px;
     cursor: pointer;
 }
-.buttonUser:active {
-    background-color: #cccccc;
-    box-shadow: none;
-}
+
+    .buttonUser:active {
+        background-color: #cccccc;
+        box-shadow: none;
+    }
 
 
 .buttonFavorites {
@@ -178,10 +182,11 @@ Price {
     width: 32px;
     cursor: pointer;
 }
-.buttonFavorites:active {
-    background-color: #cccccc;
-    box-shadow: none;
-}
+
+    .buttonFavorites:active {
+        background-color: #cccccc;
+        box-shadow: none;
+    }
 
 
 
@@ -198,10 +203,8 @@ Price {
     margin-bottom: 40px;
     float: right;
     display: flex;
-   
-    
-         
 }
+
     .search-blok input {
         border-radius: 8px;
         border: 1px solid #000000;
@@ -212,10 +215,10 @@ Price {
     }
 
 
-.search-blok img {
-    display: flex;
-    float: right;
-}
+    .search-blok img {
+        display: flex;
+        float: right;
+    }
 
 
 .overlay {
@@ -267,21 +270,21 @@ Price {
 
 
 
-   .cartTotalBlok
-        li {
-               display:flex;
-              
-           }
-   .cartTotalBlock  div{
-               flex:1;
-               height:1px;
-               border-bottom:1px dashed #dfdfdf;
-               position:relative;
-               top:-4px;
-               margin:0 7px  ;
-           }
+.cartTotalBlok
+li {
+    display: flex;
+}
 
-    
+.cartTotalBlock div {
+    flex: 1;
+    height: 1px;
+    border-bottom: 1px dashed #dfdfdf;
+    position: relative;
+    top: -4px;
+    margin: 0 7px;
+}
+
+
 
 
 
@@ -293,15 +296,17 @@ Price {
     margin-bottom: 20px;
     align-items: center;
     overflow: hidden;
-    p {
-          
-               font-size:16px;
+    p
 
-      }
-      b{
-          font-size:14px;
-      }   
-      }
+{
+    font-size: 16px;
+}
+
+b {
+    font-size: 14px;
+}
+
+}
 
 
 
@@ -321,8 +326,6 @@ h5 {
 
 .removeButton {
     margin-left: auto;
-   
-   
 }
 
 
@@ -341,19 +344,16 @@ h5 {
     height: 50px;
     width: 300px;
     cursor: pointer;
-    transition:background 0.2s ease-in-out;
-   
-
-
-
-
+    transition: background 0.2s ease-in-out;
 }
-.chekBtn:hover {
-    background: lighten (#9dd558, 5%);
-}
-.chekBtn:activate {
-    background: lighten (#afd10c, 5%);
-}
+
+    .chekBtn:hover {
+        background: lighten (#9dd558, 5%);
+    }
+
+    .chekBtn:activate {
+        background: lighten (#afd10c, 5%);
+    }
 
 .User {
     position: absolute;
@@ -381,14 +381,14 @@ h5 {
 
 
 
-.User span{
-    display:block;
-   
-    margin-top:20px;
-}
-.User b{
-    display:flex;
-}
+    .User span {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .User b {
+        display: flex;
+    }
 
 
 .Login {
@@ -404,7 +404,6 @@ h5 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     h2
 
 {
@@ -414,6 +413,7 @@ h5 {
     font-size: 24px;
     margin-bottom: 30px;
 }
+
 }
 
 
@@ -433,7 +433,7 @@ h5 {
     box-sizing: border-box;
     border-radius: 18px;
     height: 40px;
-    width:200px;
+    width: 200px;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
     &:hover
@@ -445,7 +445,9 @@ h5 {
 &:activate {
     background: lighten (#afd10c, 5%);
 }
+
 }
+
 .Link {
     text-decoration: none;
 }
@@ -495,32 +497,19 @@ login1 {
     width: 300px;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
-    
-&:activate {
+    &:activate
+
+{
     background: lighten (#afd10c, 5%);
 }
 
 }
+
 .ExitButton:hover {
     background: lighten (#9dd558, 5%);
 }
 
-.clickOrders{
+.clickOrders {
     margin-top: 20px;
     cursor: pointer;
 }
- 
-
-      
-
-  
-
-
-
-
-    
-
-    
-
-
-   

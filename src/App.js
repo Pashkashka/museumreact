@@ -17,7 +17,7 @@ import Orders from './components/Orders'
 
 
 
- export const AppContext = React.createContext({});
+export const AppContext = React.createContext({});
 
 
 
@@ -32,11 +32,11 @@ function App() {
     const onAddToCart = async (obj) => {
         try {
             if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-                axios.delete(`https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/${obj.id}`);
+                axios.delete(`https://localhost:7045/UserCart/${obj.id}`);
                 setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
             }
             else {
-                const { data } = await axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart', obj);
+                const { data } = await axios.post('https://localhost:7045/UserCart', obj);
                 setCartItems((prev) => [...prev, data]);
             }
 
@@ -48,11 +48,11 @@ function App() {
     const onAddToFavorite = async (obj) => {
         try {
             if (favoriteItems.find((item) => Number(item.id) === Number(obj.id))) {
-                axios.delete(`https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites/${obj.id}`);
-                setFavoriteItems((prev) => prev.filter((item) => Number(item.id )!== Number(obj.id)));
+                axios.delete(`https://localhost:7045/Favorites/${obj.id}`);
+                setFavoriteItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
             }
             else {
-                const { data } = await axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites', obj);
+                const { data } = await axios.post('https://localhost:7045/Favorites', obj);
                 setFavoriteItems((prev) => [...prev, data]);
             }
 
@@ -61,39 +61,39 @@ function App() {
 
         }
     };
-   /* const onAddToFavorite = (obj) => {
-        axios.get('https://644b992817e2663b9df340a0.mockapi.io/favorite${obj.exhibitionNameId}')
-    .then(({ data }) => {
-            if (data.length > 0) {
-                axios.delete('https://644b992817e2663b9df340a0.mockapi.io/favorite/${data[0].id}');
-                    setFavoriteItems((prev) => prev.filter((item) => item.productId !== obj.productId));
-            } else {
-                axios.post('https://644b992817e2663b9df340a0.mockapi.io/favorite', obj);
-                setFavoriteItems((prev) => [...prev, obj]);
-            }
-        });
-    };*/
+    /* const onAddToFavorite = (obj) => {
+         axios.get('https://644b992817e2663b9df340a0.mockapi.io/favorite${obj.exhibitionNameId}')
+     .then(({ data }) => {
+             if (data.length > 0) {
+                 axios.delete('https://644b992817e2663b9df340a0.mockapi.io/favorite/${data[0].id}');
+                     setFavoriteItems((prev) => prev.filter((item) => item.productId !== obj.productId));
+             } else {
+                 axios.post('https://644b992817e2663b9df340a0.mockapi.io/favorite', obj);
+                 setFavoriteItems((prev) => [...prev, obj]);
+             }
+         });
+     };*/
 
     //const museumCodeId = localStorage.getItem('museumCodeId');
 
     const [items, setItems] = React.useState([]);
     React.useEffect(() => {
 
-        axios.get('https://644b992817e2663b9df340a0.mockapi.io/Items').then((res) => {
+        axios.get('https://localhost:7045/Exhibition').then((res) => {
             setItems(res.data);
         });
-         
+
     }, []);
 
-   
 
-   /* const onRemoveCartItem = (id) => {
-       // console.log(id);
-        axios.delete(`Вставь ссылку/${id}`);
 
-        setCartItems((prev) => prev.filter((obj) => obj.id !== id));
-    };*/
-   
+    /* const onRemoveCartItem = (id) => {
+        // console.log(id);
+         axios.delete(`Вставь ссылку/${id}`);
+ 
+         setCartItems((prev) => prev.filter((obj) => obj.id !== id));
+     };*/
+
 
     const [cartOpened, setCartOpened] = React.useState(false);
     const [favoriteOpened, setFavoriteOpened] = React.useState(false);
@@ -104,52 +104,52 @@ function App() {
     const [favoriteItems, setFavoriteItems] = React.useState([]);
     const [orders, setOrders] = React.useState([]);
     const [totalPrice, setTotalPrice] = React.useState(0);
-    
-   // const (cartItemsId, setCartItemsId) = React.useState(null);
+
+    // const (cartItemsId, setCartItemsId) = React.useState(null);
 
     React.useEffect(() => {
-       
-        
 
-            axios.get('https://644b992817e2663b9df340a0.mockapi.io/museums').then((res) => {
-                setMuseums(res.data);
-            });
-    
-        
-            axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart').then((res) => {
-                setCartItems(res.data);
-            });
 
-       
-       
 
-       axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites').then((res) => {
+        axios.get('https://localhost:7045/Museum').then((res) => {
+            setMuseums(res.data);
+        });
+
+
+        axios.get('https://localhost:7045/UserCart').then((res) => {
+            setCartItems(res.data);
+        });
+
+
+
+
+        axios.get('https://localhost:7045/Favorites').then((res) => {
             setFavoriteItems(res.data);
         });
 
-        axios.get('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders').then((res) => {
+        axios.get('https://localhost:7045/UserOrders').then((res) => {
             setOrders(res.data);
         });
-        
+
     }, []);
 
 
     const userId = localStorage.getItem('userId');
-   
-    
-  
-    
 
-   
+
+
+
+
+
     const [selectedMuseum, setSelectedMuseum] = React.useState(null);
     const handleMuseumClick = (museum) => {
-         setSelectedMuseum(museum);
-         setItems(items.filter(item => item.museumCodeId === museum.id));
-       
-       
+        setSelectedMuseum(museum);
+        setItems(items.filter(item => item.museumCodeId === museum.id));
+
+
     };
-    
-    
+
+
 
 
 
@@ -159,30 +159,30 @@ function App() {
     };
 
     const [ordersOpened, setOrdersOpened] = React.useState(false);
-    
+
 
     return (
         <Router>
-            
-                <div className="wrapper">
+
+            <div className="wrapper">
 
 
 
-                {cartOpened ? <Drawer   cartItems={cartItems} onCloseCart={() => setCartOpened(false)} onAddToCart={onAddToCart} setCartItems={setCartItems} /> : null}
-                {userOpened ? <User cartItems={cartItems} favoriteItems={favoriteItems} orders={orders}  onCloseUser={() => setUserOpened(false)} onClickOrders={() => setOrdersOpened(true)} /> : null}
+                {cartOpened ? <Drawer cartItems={cartItems} onCloseCart={() => setCartOpened(false)} onAddToCart={onAddToCart} setCartItems={setCartItems} /> : null}
+                {userOpened ? <User cartItems={cartItems} favoriteItems={favoriteItems} orders={orders} onCloseUser={() => setUserOpened(false)} onClickOrders={() => setOrdersOpened(true)} /> : null}
 
                 {favoriteOpened ? <  Favorites favoriteItems={favoriteItems} onCloseFavorite={() => setFavoriteOpened(false)} onAddToCart={onAddToCart} onAddToFavorite={onAddToFavorite} /> : null}
-                {ordersOpened ? <Orders orders={orders} onCloseOrders={() => setOrdersOpened(false)} />: null }
+                {ordersOpened ? <Orders orders={orders} onCloseOrders={() => setOrdersOpened(false)} /> : null}
 
-                    <Header
+                <Header
                     onClickCart={() => setCartOpened(true)}
                     onClickFavorite={() => setFavoriteOpened(true)}
                     onClickUser={() => setUserOpened(true)}
-                    cartItems={cartItems }
+                    cartItems={cartItems}
 
                 />
 
-<Routes>
+                <Routes>
                     <Route path="/exhibitions" element=
 
                         {selectedMuseum && <Exhibitions
@@ -205,27 +205,27 @@ function App() {
                             searchValue={searchValue}
                             setSearchValue={setSearchValue} />}>
                     </Route>
-                        <Route path="/login" element={
-                            <Autorization
-                            
-
-                            />}> </Route>
-                        <Route path="/registration" element={< Registration
-                            
+                    <Route path="/login" element={
+                        <Autorization
 
 
-                        />}>
-
-                        </Route>
-
-                    </Routes>
+                        />}> </Route>
+                    <Route path="/registration" element={< Registration
 
 
-                </div>
-           
-        
 
-           
+                    />}>
+
+                    </Route>
+
+                </Routes>
+
+
+            </div>
+
+
+
+
         </Router>
 
     );

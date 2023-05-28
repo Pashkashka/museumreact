@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-function OrdersItems({  exhibitionName, exhibitionPrice, exhibitionImageURL }) {
+function OrdersItems({ exhibitionName, exhibitionPrice, exhibitionImageURL }) {
 
     // const userId = localStorage.getItem('userId');
-    
+
 
 
     return (<div className="card">
@@ -15,11 +15,9 @@ function OrdersItems({  exhibitionName, exhibitionPrice, exhibitionImageURL }) {
         <div className="Price"></div>
         <div>
             <div>
-                <span>Price:</span>
-                <b>{exhibitionPrice}</b>
             </div>
 
-           
+
         </div>
 
     </div>);

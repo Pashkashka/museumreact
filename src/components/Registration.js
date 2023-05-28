@@ -14,7 +14,7 @@ function Registration() {
 
     React.useEffect(() => {
         axios
-            .get('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders')
+            .get('https://localhost:7045/CountryCodeForPhoneNum')
             .then((res) => {
                 setOptions(
                     res.data.map((item) => ({
@@ -34,7 +34,7 @@ function Registration() {
 
     const handleLogin1 = (e) => {
         e.preventDefault();
-        axios.post('https://646cd32b7b42c06c3b2c1813.mockapi.io/Users', {
+        axios.post('https://localhost:7045/Users', {
             email,
             password,
             name,

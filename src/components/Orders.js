@@ -3,9 +3,9 @@ import React from 'react';
 import OrdersItems from './OrdersItems';
 import axios from 'axios';
 
-function Orders({onCloseOrders, orders=[] }) {
+function Orders({ onCloseOrders, orders = [] }) {
 
-  
+
     return (
         <div className="overlay">
             <div className="drawerFavorite">
@@ -15,17 +15,16 @@ function Orders({onCloseOrders, orders=[] }) {
                 <h2>My orders</h2>
 
                 <div className="Pizza">
-                    {orders.length>0 ? (orders.map((item, index) => (
+                    {orders.length > 0 ? (orders.map((item, index) => (
                         <OrdersItems
                             key={index}
                             id={item.id}
                             exhibitionName={item.exhibitionName}
-                            exhibitionPrice={item.exhibitionPrice}
                             exhibitionImageURL={item.exhibitionImageURL}
-                            
+
                         />
-                       
-                       ))):(<h1>Order something</h1>)}
+
+                    ))) : (<h1>Order something</h1>)}
 
 
 

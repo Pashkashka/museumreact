@@ -8,16 +8,16 @@ function Drawer({ onAddToCart, onCloseCart, onRemove, cartItems = [], setCartIte
     const onClickOrder = async () => {
         for (let i = 0; i < cartItems.length; i++) {
             const item = cartItems[i];
-            await axios.post('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders', item);
+            await axios.post('https://localhost:7045/UserOrders', item);
             // await  delay(500);
         }
-        
+
         for (let i = 0; i < cartItems.length; i++) {
             const item = cartItems[i];
-            await axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/' + item.id);
+            await axios.delete('https://localhost:7045/UserCart/' + item.id);
             // await  delay(500);
         }
-       // setCartItems([]);
+        // setCartItems([]);
         window.location.href = '/';
     }
 
