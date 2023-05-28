@@ -267,12 +267,12 @@ Price {
 
 
 
-   .cartTotalBlok{
+   .cartTotalBlok
         li {
                display:flex;
               
            }
-        div{
+   .cartTotalBlock  div{
                flex:1;
                height:1px;
                border-bottom:1px dashed #dfdfdf;
@@ -281,7 +281,7 @@ Price {
                margin:0 7px  ;
            }
 
-    }
+    
 
 
 
@@ -342,20 +342,19 @@ h5 {
     width: 300px;
     cursor: pointer;
     transition:background 0.2s ease-in-out;
-    &:hover
-
-{
-    background: lighten (#9dd558, 5%);
    
-}  
 
-&:activate{
-    background: lighten  (#afd10c, 5%);
-}
 
 
 
 }
+.chekBtn:hover {
+    background: lighten (#9dd558, 5%);
+}
+.chekBtn:activate {
+    background: lighten (#afd10c, 5%);
+}
+
 .User {
     position: absolute;
     width: 420px;

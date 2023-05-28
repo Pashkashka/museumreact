@@ -15,7 +15,7 @@ function Orders({onCloseOrders, orders=[] }) {
                 <h2>My orders</h2>
 
                 <div className="Pizza">
-                    {orders.map((item, index) => (
+                    {orders.length>0 ? (orders.map((item, index) => (
                         <OrdersItems
                             key={index}
                             id={item.id}
@@ -25,7 +25,7 @@ function Orders({onCloseOrders, orders=[] }) {
                             
                         />
                        
-                       ))}
+                       ))):(<h1>Order something</h1>)}
 
 
 
