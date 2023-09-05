@@ -46,6 +46,7 @@ h3, p {
 }
 
 
+
 .content {
     margin-top: 20px;
     h1
@@ -513,3 +514,11 @@ login1 {
     margin-top: 20px;
     cursor: pointer;
 }
+
+.logo {
+    transition: transform 0.3s ease-in-out;
+}
+
+    .logo:hover {
+        transform: rotate(360deg);
+    }
