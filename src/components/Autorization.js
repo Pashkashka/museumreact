@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Autorization() {
@@ -7,9 +7,10 @@ function Autorization() {
     const [password, setPassword] = useState('');
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState(null);
+    let navigate= useNavigate();
 
     useEffect(() => {
-        axios.get('https://localhost:7045/Users').then((res) => {
+        axios.get('https://646cd32b7b42c06c3b2c1813.mockapi.io/Users').then((res) => {
             setUsers(res.data);
         }).catch((err) => {
             console.error(err);
@@ -28,6 +29,7 @@ function Autorization() {
         localStorage.setItem('userLogin', login);
         setUser(authenticatedUser);
         window.location.href = '/';
+       //navigate("/");
     };
 
     useEffect(() => {

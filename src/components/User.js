@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function User({ onCloseUser, orders = [20], cartItems = [20], favoriteItems = [20], onClickOrders }) {
     const [user, setUser] = useState(null);
     const userId = localStorage.getItem('userId');
     const userLogin = localStorage.getItem('userLogin');
+    let navigate= useNavigate();
 
     useEffect(() => {
         if (userId) {
-            axios.get(`https://localhost:7045/Users/${userId}`).then((res) => {
+            axios.get(`https://646cd32b7b42c06c3b2c1813.mockapi.io/Users/${userId}`).then((res) => {
                 setUser(res.data);
             }).catch((err) => {
                 console.error(err);
@@ -20,23 +22,25 @@ function User({ onCloseUser, orders = [20], cartItems = [20], favoriteItems = [2
 
     if (!user) {
         return <div>First log in...</div>;
+        //window.location.href = '/login';
+       // navigate("/login");
     }
 
     const Exit = async () => {
         for (let i = 0; i < cartItems.length; i++) {
             const item = cartItems[i];
-            await axios.delete('https://localhost:7045/UserCart/' + item.id);
+            await axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/' + item.id);
         }
         for (let i = 0; i < favoriteItems.length; i++) {
             const item = favoriteItems[i];
-            await axios.delete('https://localhost:7045/Favorites/' + item.id);
+            await axios.delete('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites/' + item.id);
         }
         for (let i = 0; i < orders.length; i++) {
             const item = orders[i];
-            await axios.delete('https://localhost:7045/UserOrders/' + item.id);
+            await axios.delete('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders/' + item.id);
         }
-        localStorage.removeItem('userId'); // Удаляем id пользователя из LocalStorage
-        localStorage.removeItem('userLogin'); // Удаляем логин пользователя из LocalStorage
+        localStorage.removeItem('userId'); 
+        localStorage.removeItem('userLogin'); 
         window.location.href = '/login';
     };
 

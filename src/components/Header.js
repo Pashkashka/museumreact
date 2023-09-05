@@ -8,7 +8,7 @@ function Header({ onClickCart, onClickFavorite, onClickUser, cartItems }) {
         <div className="headerLeft">
             <a href="/">
 
-                <img width={40} height={40} src="/img/logo1.png " alt="logoType" />
+                <img width={120} height={120} src="/img/logo1.png " alt="logoType" />
             </a>
 
             <div className="headerInfo">

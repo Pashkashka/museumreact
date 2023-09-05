@@ -4,6 +4,12 @@ import React from 'react';
 import axios from 'axios';
 
 function Favorites({ onAddToFavorite, onAddToCart, onCloseFavorite, onRemove, favoriteItems = [] }) {
+    const [user, setUser] = React.useState(null);
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+        return <div>First log in...</div>;
+        //window.location.href = '/login';
+    }
 
 
     return (

@@ -32,11 +32,11 @@ function App() {
     const onAddToCart = async (obj) => {
         try {
             if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-                axios.delete(`https://localhost:7045/UserCart/${obj.id}`);
+                axios.delete(`https://646d02667b42c06c3b2c69e3.mockapi.io/Cart/${obj.id}`);
                 setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
             }
             else {
-                const { data } = await axios.post('https://localhost:7045/UserCart', obj);
+                const { data } = await axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart', obj);
                 setCartItems((prev) => [...prev, data]);
             }
 
@@ -48,11 +48,11 @@ function App() {
     const onAddToFavorite = async (obj) => {
         try {
             if (favoriteItems.find((item) => Number(item.id) === Number(obj.id))) {
-                axios.delete(`https://localhost:7045/Favorites/${obj.id}`);
+                axios.delete(`https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites/${obj.id}`);
                 setFavoriteItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
             }
             else {
-                const { data } = await axios.post('https://localhost:7045/Favorites', obj);
+                const { data } = await axios.post('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites', obj);
                 setFavoriteItems((prev) => [...prev, data]);
             }
 
@@ -79,7 +79,7 @@ function App() {
     const [items, setItems] = React.useState([]);
     React.useEffect(() => {
 
-        axios.get('https://localhost:7045/Exhibition').then((res) => {
+        axios.get('https://644b992817e2663b9df340a0.mockapi.io/Items').then((res) => {
             setItems(res.data);
         });
 
@@ -111,23 +111,23 @@ function App() {
 
 
 
-        axios.get('https://localhost:7045/Museum').then((res) => {
+        axios.get('https://644b992817e2663b9df340a0.mockapi.io/museums').then((res) => {
             setMuseums(res.data);
         });
 
 
-        axios.get('https://localhost:7045/UserCart').then((res) => {
+        axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Cart').then((res) => {
             setCartItems(res.data);
         });
 
 
 
 
-        axios.get('https://localhost:7045/Favorites').then((res) => {
+        axios.get('https://646d02667b42c06c3b2c69e3.mockapi.io/Favorites').then((res) => {
             setFavoriteItems(res.data);
         });
 
-        axios.get('https://localhost:7045/UserOrders').then((res) => {
+        axios.get('https://646cd32b7b42c06c3b2c1813.mockapi.io/Orders').then((res) => {
             setOrders(res.data);
         });
 

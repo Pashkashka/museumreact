@@ -34,7 +34,7 @@ function Registration() {
 
     const handleLogin1 = (e) => {
         e.preventDefault();
-        axios.post('https://localhost:7045/Users', {
+        axios.post('https://646cd32b7b42c06c3b2c1813.mockapi.io/Users', {
             email,
             password,
             name,
